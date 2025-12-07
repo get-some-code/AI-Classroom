@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lecture → Exam-Ready Pack</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="./style.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="app">
+      <header>
+        <div>
+          <h1>
+            <span class="logo-dot"></span>
+            Lecture ➜ Exam-Ready Pack
+          </h1>
+          <p>
+            Upload a lecture and instantly get notes, summary, exam questions &
+            a doubt chatbot.
+          </p>
+        </div>
+        <div class="badge">Hackathon Prototype</div>
+      </header>
+
+      <main>
+        <!-- LEFT COLUMN: upload + transcript -->
+        <div class="column">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">1. Upload lecture</div>
+                <div class="card-subtitle">
+                  Use audio OR paste raw transcript text.
+                </div>
+              </div>
+              <span id="status-pill" class="pill">Idle</span>
+            </div>
+
+            <label class="upload-area" id="upload-area">
+              <strong>Select audio file</strong>
+              <p>Click to choose a lecture recording (MP3 / WAV / M4A).</p>
+              <p id="file-name">No file selected.</p>
+              <span
+                >Optional: you can skip file and paste transcript below.</span
+              >
+              <input id="audio-input" type="file" accept="audio/*" />
+            </label>
+
+            <div class="inline-label">Or paste transcript manually:</div>
+            <textarea
+              id="transcript-input"
+              placeholder="Paste your lecture transcript here if you already have it..."
+            ></textarea>
+
+            <div class="button-row">
+              <span id="status-text" class="status-text"></span>
+              <button id="generate-btn" class="btn btn-primary">
+                ⚡ Generate Exam Pack
+              </button>
+            </div>
+          </div>
+
+          <div class="card" style="flex: 1">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Transcript preview</div>
+                <div class="card-subtitle">
+                  What we understood from your lecture.
+                </div>
+              </div>
+            </div>
+            <div id="transcript-box" class="transcript-box transcript-empty">
+              No transcript yet. Upload audio or paste text and click "Generate
+              Exam Pack".
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: tabs for summary/notes/questions/chat -->
+        <div class="column">
+          <div class="card" style="flex: 1">
+            <div class="card-header">
+              <div>
+                <div class="card-title">2. Exam-Ready Pack</div>
+                <div class="card-subtitle">
+                  Switch between summary, notes, questions and chatbot.
+                </div>
+              </div>
+            </div>
+
+            <div class="tabs">
+              <button class="tab-btn active" data-tab="summary">Summary</button>
+              <button class="tab-btn" data-tab="notes">Notes</button>
+              <button class="tab-btn" data-tab="questions">Questions</button>
+              <button class="tab-btn" data-tab="chat">Doubts Chatbot</button>
+            </div>
+
+            <!-- SUMMARY TAB -->
+            <div id="tab-summary" class="tab-panel active">
+              <div class="pill-row">
+                <span class="pill">Short</span>
+                <span class="pill">Medium</span>
+                <span class="pill">Detailed</span>
+              </div>
+              <div class="section-title">Short summary (10-second recall)</div>
+              <div id="summary-short" class="section-body">No summary yet.</div>
+
+              <div class="section-title">
+                Medium summary (revision before exam)
+              </div>
+              <div id="summary-medium" class="section-body hint">
+                Once you generate the pack, a 2–4 line explanation will appear
+                here.
+              </div>
+
+              <div class="section-title">
+                Detailed summary (full concept walk-through)
+              </div>
+              <div id="summary-detailed" class="section-body hint">
+                Generated content for deep revision will be shown here.
+              </div>
+            </div>
+
+            <!-- NOTES TAB -->
+            <div id="tab-notes" class="tab-panel">
+              <div class="section-title">Structured notes</div>
+              <div id="notes-body" class="section-body hint">
+                Bullet-point notes extracted from the lecture will appear here.
+              </div>
+            </div>
+
+            <!-- QUESTIONS TAB -->
+            <div id="tab-questions" class="tab-panel">
+              <div class="section-title">Exam-style practice</div>
+              <div class="pill-row">
+                <span class="pill">MCQs</span>
+                <span class="pill">Short answer</span>
+                <span class="pill">Long answer</span>
+                <span class="pill">Expected exam questions</span>
+              </div>
+
+              <div class="questions-group">
+                <h4>MCQs</h4>
+                <ol id="questions-mcq"></ol>
+              </div>
+
+              <div class="questions-group">
+                <h4>Short answer questions</h4>
+                <ol id="questions-short"></ol>
+              </div>
+
+              <div class="questions-group">
+                <h4>Long answer questions</h4>
+                <ol id="questions-long"></ol>
+              </div>
+
+              <div class="questions-group">
+                <h4>Expected exam questions</h4>
+                <ol id="questions-expected"></ol>
+              </div>
+            </div>
+
+            <!-- CHAT TAB -->
+            <div id="tab-chat" class="tab-panel">
+              <div class="chat-wrapper">
+                <div class="chat-messages" id="chat-messages">
+                  <div class="chat-message bot">
+                    Hi! Ask me anything about this lecture. I'll answer using
+                    only the content from your upload.
+                  </div>
+                </div>
+                <div class="chat-input-row">
+                  <input
+                    id="chat-input"
+                    type="text"
+                    placeholder="Ask a doubt about the lecture..."
+                  />
+                  <button
+                    id="chat-send"
+                    class="btn btn-primary"
+                    style="padding-inline: 12px"
+                  >
+                    Send
+                  </button>
+                </div>
+                <div class="hint">
+                  Chatbot will answer based on the lecture transcript content.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+  <script src="./script.js"></script>
+</html>
