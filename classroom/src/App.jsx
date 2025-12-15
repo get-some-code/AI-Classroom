@@ -28,7 +28,7 @@ function App() {
           </div>
           <div className="px-4 py-2 bg-white border border-slate-200 rounded-lg shadow-sm">
             <a
-              href="https://github.com/get-some-code/AI-Classroom"
+              href="https://github.com/get-some-code/AI-Classroom/tree/main/classroom"
               target="_blank"
               aria-label="View source on GitHub"
               className="
